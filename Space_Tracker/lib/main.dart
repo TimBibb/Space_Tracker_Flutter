@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
 						crossAxisCount: 3,
 						
 						children: <Widget>[
-							Container(
+							new Container(
 							padding: const EdgeInsets.all(8),
 							color: Colors.blue,
 							child: new Center(
@@ -101,10 +101,10 @@ class _MyHomePageState extends State<MyHomePage> {
 											color: Colors.white
 										),
 									),
-							),
+								),
 						)
-						],
-					)
+					],
+				)
 			),
 			floatingActionButton: FloatingActionButton(
 				onPressed: _incrementCounter,
