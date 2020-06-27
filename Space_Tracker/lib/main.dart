@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-	MyHomePage({this.title});
+	MyHomePage({this.title} );
 	
 	// This widget is the home page of your application. It is stateful, meaning
 	// that it has a State object (defined below) that contains fields that affect
@@ -43,11 +43,11 @@ class MyHomePage extends StatefulWidget {
 	// used by the build method of the State. Fields in a Widget subclass are
 	// always marked "final".
 	@override 
-	_SatellitePageState createState() => _SatellitePageState();
+	_HomePageState createState() => _HomePageState();
 	final String title;
 }
 
-class _SatellitePageState extends State<MyHomePage> {
+class _HomePageState extends State<MyHomePage> {
 	final List<Tab> myTabs = <Tab>[
 		Tab(text: 'Satellites'),
 		Tab(text: 'Launches'),
@@ -67,7 +67,7 @@ class _SatellitePageState extends State<MyHomePage> {
 			children: myTabs.map((Tab tab) {
 				final String label = tab.text.toLowerCase();
 				if (label == "satellites"){
-					return Scaffold(
+					new Scaffold(
 						body: Center(
 							// Center is a layout widget. It takes a single child and positions it
 							// in the middle of the parent.
@@ -76,7 +76,7 @@ class _SatellitePageState extends State<MyHomePage> {
 									padding: const EdgeInsets.all(20),
 									crossAxisSpacing: 10,
 									mainAxisSpacing: 10,
-									crossAxisCount: 3,
+									crossAxisCount: 2,
 									
 									children: List.generate(50, (index){
 										return new FlatButton(
