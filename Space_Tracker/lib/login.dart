@@ -201,9 +201,35 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.of(context).pushNamedAndRemoveUntil(
                         '/home', (Route<dynamic> route) => false);
                   } else {
-                    setState(() {
-                      _futureLogin = null;
-                    });
+                    return Column(
+                      children: <Widget>[
+                        Text("Incorrect Username or Password"),
+                        RaisedButton(
+                          elevation: 5.0,
+                          onPressed: () {
+                            setState(() {
+                              _futureLogin = loginRequest(emailController.text,
+                                  passwordController.text);
+                            });
+                          },
+                          padding: EdgeInsets.all(15.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          color: Colors.white,
+                          child: Text(
+                            'LOGIN',
+                            style: TextStyle(
+                              color: Color(0xFF527DAA),
+                              letterSpacing: 1.5,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'OpenSans',
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
                   }
 
                   return CircularProgressIndicator();
