@@ -54,8 +54,10 @@ class _HomePageState extends State<MyHomePage> {
   _HomePageState(this._username);
   double _cornerRadius = 18.0;
   double maxHeightHelpBar, minHeightHelpBar;
+
   @override
-  void setState(fn) {
+  // ignore: must_call_super
+  void initState() {
     maxHeightHelpBar = MediaQuery.of(context).size.height / 3;
     minHeightHelpBar = MediaQuery.of(context).size.height / 5;
   }
