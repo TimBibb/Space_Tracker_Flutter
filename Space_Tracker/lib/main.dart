@@ -56,12 +56,13 @@ class _HomePageState extends State<MyHomePage> {
 				// Add a ListView to the drawer. This ensures the user can scroll
 				// through the options in the drawer if there isn't enough vertical
 				// space to fit everything.
+				
 				child: ListView(
 					// Important: Remove any padding from the ListView.
 					padding: EdgeInsets.zero,
 					children: <Widget>[
 						DrawerHeader(
-							child: Align(alignment: Alignment.bottomLeft, child: Text(_username)),
+							child: Align(alignment: Alignment.bottomLeft, child: Text(_username, style: new TextStyle(fontSize: 24))),
 							decoration: BoxDecoration(
 								color: Colors.grey,
 							),
@@ -93,11 +94,29 @@ class _HomePageState extends State<MyHomePage> {
 					],
 				),
 			),
-			body: MenuButton()
+			body: Stack(
+				children: <Widget>[
+					MapWidget(),
+					MenuButton()
+				]
+			)
 		);
 	}
 
 	final String _username;
+}
+
+class MapWidget extends StatelessWidget {
+  const MapWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+    	color: Colors.grey[400],
+    );
+  }
 }
 
 class MenuButton extends StatelessWidget {
