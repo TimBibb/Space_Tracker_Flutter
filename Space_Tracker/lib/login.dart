@@ -211,6 +211,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       loginButton()
                     ],
                   );
+                } else {
+                  return Column(
+                    children: <Widget>[
+                      Text("${snapshot.data.error}"),
+                      loginButton()
+                    ],
+                  );
                 }
               } else {
                 return loginButton();
