@@ -56,14 +56,9 @@ class _HomePageState extends State<MyHomePage> {
   double maxHeightHelpBar, minHeightHelpBar;
 
   @override
-  // ignore: must_call_super
-  void initState() {
+  Widget build(BuildContext context) {
     maxHeightHelpBar = MediaQuery.of(context).size.height / 3;
     minHeightHelpBar = MediaQuery.of(context).size.height / 5;
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       drawer: SettingsDrawer(username: _username),
       body: Stack(children: <Widget>[
