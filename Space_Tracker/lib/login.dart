@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,8 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _rememberMe = false;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  bool loginError = false;
 
   Future<LoginResponse> _futureLogin;
 
@@ -172,6 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() {
           _futureLogin =
               loginRequest(emailController.text, passwordController.text);
+          loginError = false;
         });
       },
       padding: EdgeInsets.all(15.0),
@@ -205,12 +209,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/home', (Route<dynamic> route) => false);
                 } else {
-                  return Column(
-                    children: <Widget>[Text("ween"), loginButton()],
-                  );
+                  setState(() {
+                    loginError = true;
+                  });
                 }
               } else {
-                return loginButton();
+                return Column(
+                  children: <Widget>[
+                    (loginError) ? Text("${snapshot.data.error}") : Container(),
+                    loginButton()
+                  ],
+                );
+                ;
               }
             }));
   }
