@@ -52,7 +52,7 @@ class _HomePageState extends State<MyHomePage> {
 
 	@override
 	Widget build(BuildContext context) {
-		return new Scaffold(
+		return Scaffold(
 			drawer: SettingsDrawer(username: _username),
 			body: Stack(
 				children: <Widget>[
@@ -60,87 +60,86 @@ class _HomePageState extends State<MyHomePage> {
 					MenuButton(),
 				]
 			),
-			bottomSheet: HelpWidget()
-			,
-			
+			bottomSheet: HelpSheet()
 		);
 	}
 
 	final String _username;
 }
 
-class SettingsDrawer extends StatelessWidget {
-  const SettingsDrawer({
-    Key key,
-    @required String username,
-  }) : _username = username, super(key: key);
-
-  final String _username;
-
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-    	// Add a ListView to the drawer. This ensures the user can scroll
-    	// through the options in the drawer if there isn't enough vertical
-    	// space to fit everything.
-    	
-    	child: ListView(
-    		// Important: Remove any padding from the ListView.
-    		padding: EdgeInsets.zero,
-    		children: <Widget>[
-    			DrawerHeader(
-    				child: Align(alignment: Alignment.bottomLeft, child: Text(_username, style: new TextStyle(fontSize: 24))),
-    				decoration: BoxDecoration(
-    					color: Colors.grey,
-    				),
-    			),
-    			ListTile(
-    				title: Text('Account'),
-    				onTap: () {
-    					// Update the state of the app.
-    					// ...
-    					Navigator.pop(context);
-    				},
-    			),
-    			ListTile(
-    				title: Text('Payment'),
-    				onTap: () {
-    					// Update the state of the app.
-    					// ...
-    					Navigator.pop(context);
-    				},
-    			),
-    			ListTile(
-    				title: Text('Previous Order'),
-    				onTap: () {
-    					// Update the state of the app.
-    					// ...
-    					Navigator.pop(context);
-    				},
-    			),
-    		],
-    	),
-    );
-  }
-}
-
-class HelpWidget extends StatelessWidget {
-  const HelpWidget({
+class HelpSheet extends StatelessWidget {
+  const HelpSheet({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return  Container(
 			height: 300.0,
-    	decoration: new BoxDecoration(
+    	decoration: BoxDecoration(
 				color: Colors.white,
-        borderRadius: new BorderRadius.only(
-    			topLeft:  const  Radius.circular(20.0),
-    			topRight: const  Radius.circular(20.0),
+        borderRadius: BorderRadius.only(
+    			topLeft: const Radius.circular(20.0),
+    			topRight: const Radius.circular(20.0),
     		)
       ),
-    	child: new Align(
+    	child: ListView(
+				children: <Widget> [
+					HelpSearchBar(),
+					Text("Quick Help"),
+					Divider(color: Colors.grey[300]),
+					QuickHelpGrid()
+				]
+			)
+    );
+  }
+}
+
+class QuickHelpGrid extends StatelessWidget {
+  const QuickHelpGrid({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+    	crossAxisCount: 3,
+    	children: <Widget> [
+    		Container (
+    			padding: const EdgeInsets.all(10),
+    			child: Align(
+    				alignment: Alignment.center,
+    				child: Text("Computer"),
+    			)
+    		),
+    		Container (
+    			padding: const EdgeInsets.all(10),
+    			child: Align(
+    				alignment: Alignment.center,
+    				child: Text("Phone"),
+    			)
+    		),
+    		Container (
+    			padding: const EdgeInsets.all(10),
+    			child: Align(
+    				alignment: Alignment.center,
+    				child: Text("Network"),
+    			)
+    		)
+    	]
+    );
+  }
+}
+
+class HelpSearchBar extends StatelessWidget {
+  const HelpSearchBar({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container (
+    	child: Align(
     		alignment: Alignment.topCenter,
     		child: SafeArea(
     			minimum: const EdgeInsets.all(16.0),
@@ -213,6 +212,61 @@ class MenuButton extends StatelessWidget {
     				)
     			)
     		) 
+    );
+  }
+}
+
+class SettingsDrawer extends StatelessWidget {
+  const SettingsDrawer({
+    Key key,
+    @required String username,
+  }) : _username = username, super(key: key);
+
+  final String _username;
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+    	// Add a ListView to the drawer. This ensures the user can scroll
+    	// through the options in the drawer if there isn't enough vertical
+    	// space to fit everything.
+    	
+    	child: ListView(
+    		// Important: Remove any padding from the ListView.
+    		padding: EdgeInsets.zero,
+    		children: <Widget>[
+    			DrawerHeader(
+    				child: Align(alignment: Alignment.bottomLeft, child: Text(_username, style:  TextStyle(fontSize: 24))),
+    				decoration: BoxDecoration(
+    					color: Colors.grey,
+    				),
+    			),
+    			ListTile(
+    				title: Text('Account'),
+    				onTap: () {
+    					// Update the state of the app.
+    					// ...
+    					Navigator.pop(context);
+    				},
+    			),
+    			ListTile(
+    				title: Text('Payment'),
+    				onTap: () {
+    					// Update the state of the app.
+    					// ...
+    					Navigator.pop(context);
+    				},
+    			),
+    			ListTile(
+    				title: Text('Previous Order'),
+    				onTap: () {
+    					// Update the state of the app.
+    					// ...
+    					Navigator.pop(context);
+    				},
+    			),
+    		],
+    	),
     );
   }
 }
