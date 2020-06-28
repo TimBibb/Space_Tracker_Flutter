@@ -85,12 +85,11 @@ class _HomePageState extends State<MyHomePage> {
 					],
 				),
 			),
-			body: FlatButton.icon(
+			body: FlatButton(
 				onPressed: (){
 					Scaffold.of(context).openDrawer();
 				},
-				icon: Icon(Icons.menu),
-				label: null
+				child: Icon(Icons.menu),
 			)
 		);
 	}
