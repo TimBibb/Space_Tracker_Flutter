@@ -69,7 +69,20 @@ class _HomePageState extends State<MyHomePage> {
 							topLeft: Radius.circular(18.0),
 							topRight: Radius.circular(18.0)
 						),
-					)
+					),
+				]
+			),
+			bottomNavigationBar: BottomNavigationBar(
+				currentIndex: 0,
+				items: [
+					BottomNavigationBarItem(
+						icon: Icon(Icons.home),
+						title: Text('Home'),
+					),
+					BottomNavigationBarItem(
+						icon: Icon(Icons.assignment),
+						title: Text('Quotes'),
+					),
 				]
 			),
 		);
