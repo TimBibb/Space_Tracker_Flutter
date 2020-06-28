@@ -107,6 +107,7 @@ class QuickHelpGrid extends StatelessWidget {
     	children: <Widget> [
     		Container (
     			padding: const EdgeInsets.all(10),
+					color: Colors.blue,
     			child: Align(
     				alignment: Alignment.center,
     				child: Text("Computer"),
@@ -114,6 +115,7 @@ class QuickHelpGrid extends StatelessWidget {
     		),
     		Container (
     			padding: const EdgeInsets.all(10),
+					color: Colors.blue,
     			child: Align(
     				alignment: Alignment.center,
     				child: Text("Phone"),
@@ -121,6 +123,7 @@ class QuickHelpGrid extends StatelessWidget {
     		),
     		Container (
     			padding: const EdgeInsets.all(10),
+					color: Colors.blue,
     			child: Align(
     				alignment: Alignment.center,
     				child: Text("Network"),
