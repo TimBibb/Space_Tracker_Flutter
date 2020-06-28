@@ -113,7 +113,7 @@ class HelpSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 350.0,
+        height: _maxHeight,
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
