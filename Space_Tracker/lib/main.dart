@@ -48,8 +48,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<MyHomePage> {
-	final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
 	@override
 	Widget build(BuildContext context) {
 		return new Scaffold(
@@ -90,13 +88,16 @@ class _HomePageState extends State<MyHomePage> {
 				alignment: Alignment.topLeft,
 				child: SafeArea(
 					minimum: const EdgeInsets.all(16.0),
-					child: FlatButton(
-						color: Colors.grey,
-						textColor: Colors.white,
-						onPressed: (){
-							_scaffoldKey.currentState.openDrawer();
-						},
-						child: Icon(Icons.menu),
+					child: ClipOval(
+						child: Material(
+							color: Colors.grey, // button color
+							child: InkWell(
+								child: SizedBox(width: 56, height: 56, child: Icon(Icons.menu)),
+								onTap: () {
+									Scaffold.of(context).openDrawer();
+								},
+							),
+						),
 					)
 				)
 			) 
