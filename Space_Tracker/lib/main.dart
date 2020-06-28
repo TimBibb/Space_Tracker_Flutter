@@ -1,6 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:Space_Tracker/login.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 void main() {
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Space Tracker'),
+      home: LoginScreen(),
     );
   }
 }
@@ -58,7 +57,7 @@ class _HomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     maxHeightHelpBar = MediaQuery.of(context).size.height / 3;
-    minHeightHelpBar = MediaQuery.of(context).size.height / 5;
+    minHeightHelpBar = MediaQuery.of(context).size.height / 6;
     return Scaffold(
       drawer: SettingsDrawer(username: _username),
       body: Stack(children: <Widget>[
