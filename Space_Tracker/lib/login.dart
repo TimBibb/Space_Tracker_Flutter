@@ -206,10 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       '/home', (Route<dynamic> route) => false);
                 } else {
                   return Column(
-                    children: <Widget>[
-                      Text("${snapshot.data.error}"),
-                      loginButton()
-                    ],
+                    children: <Widget>[Text("ween"), loginButton()],
                   );
                 }
               } else {
