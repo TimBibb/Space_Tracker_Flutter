@@ -168,43 +168,31 @@ class _LoginScreenState extends State<LoginScreen> {
     return Container(
         padding: EdgeInsets.symmetric(vertical: 25.0),
         width: double.infinity,
-        child: (_futureLogin == null)
-            ? RaisedButton(
-                elevation: 5.0,
-                onPressed: () {
-                  setState(() {
-                    _futureLogin = loginRequest(
-                        emailController.text, passwordController.text);
-                  });
-                },
-                padding: EdgeInsets.all(15.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                color: Colors.white,
-                child: Text(
-                  'LOGIN',
-                  style: TextStyle(
-                    color: Color(0xFF527DAA),
-                    letterSpacing: 1.5,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'OpenSans',
-                  ),
-                ),
-              )
-            : FutureBuilder<LoginResponse>(
-                future: _futureLogin,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    Navigator.of(context).pushNamed("/home");
-                  } else if (snapshot.hasError) {
-                    return Text("peen");
-                  }
-
-                  return CircularProgressIndicator();
-                },
-              ));
+        child: RaisedButton(
+          elevation: 5.0,
+          onPressed: () {
+            setState(() {
+              _futureLogin =
+                  loginRequest(emailController.text, passwordController.text);
+              LoginLogic(futureLogin: _futureLogin);
+            });
+          },
+          padding: EdgeInsets.all(15.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          color: Colors.white,
+          child: Text(
+            'LOGIN',
+            style: TextStyle(
+              color: Color(0xFF527DAA),
+              letterSpacing: 1.5,
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'OpenSans',
+            ),
+          ),
+        ));
   }
 
   Widget _buildSignInWithText() {
@@ -367,6 +355,47 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class LoginLogic extends StatelessWidget {
+  const LoginLogic({
+    Key key,
+    @required Future<LoginResponse> futureLogin,
+  })  : _futureLogin = futureLogin,
+        super(key: key);
+
+  final Future<LoginResponse> _futureLogin;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<LoginResponse>(
+      future: _futureLogin,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          Navigator.of(context).pushNamed("/home");
+        } else if (snapshot.hasError) {
+          showDialog(
+            context: context,
+            builder: (context) => new AlertDialog(
+              title: new Text('Incorrect login'),
+              content: Text('Your email or password was incorrect.'),
+              actions: <Widget>[
+                new FlatButton(
+                  onPressed: () {
+                    Navigator.of(context, rootNavigator: true)
+                        .pop(); // dismisses only the dialog and returns nothing
+                  },
+                  child: new Text('OK'),
+                ),
+              ],
+            ),
+          );
+        }
+
+        return CircularProgressIndicator();
+      },
     );
   }
 }
