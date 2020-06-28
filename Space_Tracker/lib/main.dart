@@ -63,8 +63,7 @@ class _HomePageState extends State<MyHomePage> {
             minChildSize: 0.2,
 						maxChildSize: .35,
             builder: (BuildContext context, ScrollController scrollController) {
-              return SingleChildScrollView(
-                controller: scrollController,
+              return Container(
                 child: HelpSheet(),
               );
             },
