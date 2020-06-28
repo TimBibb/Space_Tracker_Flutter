@@ -104,32 +104,32 @@ class QuickHelpGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
     	crossAxisCount: 3,
-    	children: <Widget> [
-    		Container (
-    			padding: const EdgeInsets.all(10),
-					color: Colors.blue,
-    			child: Align(
-    				alignment: Alignment.center,
-    				child: Text("Computer"),
-    			)
-    		),
-    		Container (
-    			padding: const EdgeInsets.all(10),
-					color: Colors.blue,
-    			child: Align(
-    				alignment: Alignment.center,
-    				child: Text("Phone"),
-    			)
-    		),
-    		Container (
-    			padding: const EdgeInsets.all(10),
-					color: Colors.blue,
-    			child: Align(
-    				alignment: Alignment.center,
-    				child: Text("Network"),
-    			)
-    		)
-    	]
+    	// children: <Widget> [
+    	// 	Container (
+    	// 		padding: const EdgeInsets.all(10),
+			// 		color: Colors.blue,
+    	// 		child: Align(
+    	// 			alignment: Alignment.center,
+    	// 			child: Text("Computer"),
+    	// 		)
+    	// 	),
+    	// 	Container (
+    	// 		padding: const EdgeInsets.all(10),
+			// 		color: Colors.blue,
+    	// 		child: Align(
+    	// 			alignment: Alignment.center,
+    	// 			child: Text("Phone"),
+    	// 		)
+    	// 	),
+    	// 	Container (
+    	// 		padding: const EdgeInsets.all(10),
+			// 		color: Colors.blue,
+    	// 		child: Align(
+    	// 			alignment: Alignment.center,
+    	// 			child: Text("Network"),
+    	// 		)
+    	// 	)
+    	// ]
     );
   }
 }
