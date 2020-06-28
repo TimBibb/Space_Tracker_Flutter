@@ -205,22 +205,15 @@ class MapWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
-			backgroundColor: Colors.blueGrey[300],
-			body: GridView.count(
-        // Create a grid with 2 columns. If you change the scrollDirection to
-        // horizontal, this produces 2 rows.
-        crossAxisCount: 2,
-        // Generate 100 widgets that display their index in the List.
-        children: List.generate(100, (index) {
-          return Center(
-            child: Text(
-              'ITEM ITEM ITEM',
-              style: Theme.of(context).textTheme.headline5,
-            ),
-           );
-      	}),
-      ),
+    return Container( 
+			decoration: BoxDecoration(
+				image: DecorationImage(
+					image: AssetImage(
+						'images/ubermapimage.jpg'
+					),
+					fit: BoxFit.fill
+				)
+			),
     );
   }
 }
