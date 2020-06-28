@@ -197,7 +197,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 future: _futureLogin,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    Navigator.of(context).pushNamed("/home");
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/home', (Route<dynamic> route) => false);
                   } else if (snapshot.hasError) {
                     showDialog(
                         context: context,
@@ -213,9 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: new Text("OK"),
                                 onPressed: () {
                                   Navigator.of(context).pop();
-                                  setState(() {
-                                    _futureLogin = null;
-                                  });
+                                  _futureLogin = null;
                                 },
                               ),
                             ],
