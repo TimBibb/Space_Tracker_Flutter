@@ -117,8 +117,8 @@ class QuickHelpGrid extends StatelessWidget {
 			padding: EdgeInsets.only(top: 5.0),
     	crossAxisCount: 3,
 			shrinkWrap: true,
-			mainAxisSpacing: 4.0,
-			crossAxisSpacing: 4.0,
+			mainAxisSpacing: 5.0,
+			crossAxisSpacing: 5.0,
     	children: <Widget> [
     		QuickHelpItem("Computer"),
 				QuickHelpItem("Phone"),
