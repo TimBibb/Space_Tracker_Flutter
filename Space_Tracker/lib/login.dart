@@ -209,9 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           new FlatButton(
                             onPressed: () {
                               Navigator.of(context).pop();
-                              setState(() {
-                                _futureLogin = null;
-                              });
+                              _futureLogin = null;
                             },
                             child: new Text('OK'),
                           ),
