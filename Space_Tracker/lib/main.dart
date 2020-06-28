@@ -105,6 +105,7 @@ class QuickHelpGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
     	crossAxisCount: 3,
+			shrinkWrap: true,
     	children: <Widget> [
     		Container (
     			padding: const EdgeInsets.all(10),
