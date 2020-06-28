@@ -202,7 +202,8 @@ class _LoginScreenState extends State<LoginScreen> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data.success) {
-                  Navigator.of(context).pushNamed('/home');
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/home', (Route<dynamic> route) => false);
                 } else if (snapshot.hasError) {
                   return Column(
                     children: <Widget>[
