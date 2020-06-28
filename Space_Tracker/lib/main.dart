@@ -112,7 +112,7 @@ class HelpSheet extends StatelessWidget {
               topRight: const Radius.circular(20.0),
             )),
         child: SafeArea(
-            minimum: const EdgeInsets.all(32),
+            minimum: const EdgeInsets.only(top: 18, left: 36, right: 36),
             child: ListView(
               physics: const NeverScrollableScrollPhysics(),
               children: <Widget>[
@@ -129,6 +129,7 @@ class HelpSheet extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(height: 18),
                 HelpSearchBar(),
                 Padding(
                   padding: const EdgeInsets.only(
