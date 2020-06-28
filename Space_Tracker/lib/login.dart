@@ -202,7 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 future: _futureLogin,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    return Text(snapshot.data.success);
+                    return Text(snapshot.data.success.toString());
                   } else if (snapshot.hasError) {
                     return Text("${snapshot.error}");
                   }
