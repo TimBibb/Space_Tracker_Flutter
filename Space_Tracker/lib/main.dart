@@ -84,7 +84,7 @@ class HelpSheet extends StatelessWidget {
     		)
       ),
     	child: SafeArea(
-    		minimum: const EdgeInsets.all(16.0),
+    		minimum: const EdgeInsets.all(32),
     		child: ListView(
 					children: <Widget> [
 						HelpSearchBar(),
@@ -128,6 +128,9 @@ class QuickHelpItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container (
+			decoration: BoxDecoration(
+    		borderRadius: BorderRadius.circular(10.0)
+    	),
     	padding: const EdgeInsets.all(10),
 			color: Colors.blue,
     	child: Align(
@@ -150,7 +153,7 @@ class HelpSearchBar extends StatelessWidget {
     	child: Align(
     		alignment: Alignment.topCenter,
     		child: SafeArea(
-    			minimum: const EdgeInsets.all(16.0),
+    			minimum: const EdgeInsets.all(0.0),
     			child: TextField(
     				decoration: InputDecoration(
     					border: OutlineInputBorder(),
