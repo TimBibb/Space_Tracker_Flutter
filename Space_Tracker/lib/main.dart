@@ -84,23 +84,29 @@ class _HomePageState extends State<MyHomePage> {
 					],
 				),
 			),
-			body: Align(
-				alignment: Alignment.topLeft,
-				child: SafeArea(
-					minimum: const EdgeInsets.all(16.0),
-					child: ClipOval(
-						child: Material(
-							color: Colors.grey, // button color
-							child: InkWell(
-								child: SizedBox(width: 56, height: 56, child: Icon(Icons.menu)),
-								onTap: () {
-									Scaffold.of(context).openDrawer();
-								},
-							),
-						),
-					)
-				)
-			) 
+			body: Builder(
+				builder: (context) =>
+					Align(
+						alignment: Alignment.topLeft,
+						child: SafeArea(
+							minimum: const EdgeInsets.all(16.0),
+							child: ClipOval(
+								child: Material(
+									color: Colors.grey, // button color
+									child: InkWell(
+										child: SizedBox(
+											width: 56,
+											height: 56,
+											child: Icon(Icons.menu, color: Colors.white)),
+										onTap: () {
+											Scaffold.of(context).openDrawer();
+										},
+									),
+								),
+							)
+						)
+					) 
+			)
 		);
 	}
 }
