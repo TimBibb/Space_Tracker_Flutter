@@ -49,62 +49,112 @@ class MyHomePage extends StatefulWidget {
 
 class _HomePageState extends State<MyHomePage> {
   _HomePageState(this._username);
+
 	@override
 	Widget build(BuildContext context) {
 		return new Scaffold(
-			drawer: Drawer(
-				// Add a ListView to the drawer. This ensures the user can scroll
-				// through the options in the drawer if there isn't enough vertical
-				// space to fit everything.
-				
-				child: ListView(
-					// Important: Remove any padding from the ListView.
-					padding: EdgeInsets.zero,
-					children: <Widget>[
-						DrawerHeader(
-							child: Align(alignment: Alignment.bottomLeft, child: Text(_username, style: new TextStyle(fontSize: 24))),
-							decoration: BoxDecoration(
-								color: Colors.grey,
-							),
-						),
-						ListTile(
-							title: Text('Account'),
-							onTap: () {
-								// Update the state of the app.
-								// ...
-								Navigator.pop(context);
-							},
-						),
-						ListTile(
-							title: Text('Payment'),
-							onTap: () {
-								// Update the state of the app.
-								// ...
-								Navigator.pop(context);
-							},
-						),
-						ListTile(
-							title: Text('Previous Order'),
-							onTap: () {
-								// Update the state of the app.
-								// ...
-								Navigator.pop(context);
-							},
-						),
-					],
-				),
-			),
+			drawer: SettingsDrawer(username: _username),
 			body: Stack(
 				children: <Widget>[
 					MapWidget(),
-					MenuButton()
+					MenuButton(),
 				]
-			)
+			),
+			bottomSheet: HelpWidget()
+			,
+			
 		);
 	}
 
 	final String _username;
 }
+
+class SettingsDrawer extends StatelessWidget {
+  const SettingsDrawer({
+    Key key,
+    @required String username,
+  }) : _username = username, super(key: key);
+
+  final String _username;
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+    	// Add a ListView to the drawer. This ensures the user can scroll
+    	// through the options in the drawer if there isn't enough vertical
+    	// space to fit everything.
+    	
+    	child: ListView(
+    		// Important: Remove any padding from the ListView.
+    		padding: EdgeInsets.zero,
+    		children: <Widget>[
+    			DrawerHeader(
+    				child: Align(alignment: Alignment.bottomLeft, child: Text(_username, style: new TextStyle(fontSize: 24))),
+    				decoration: BoxDecoration(
+    					color: Colors.grey,
+    				),
+    			),
+    			ListTile(
+    				title: Text('Account'),
+    				onTap: () {
+    					// Update the state of the app.
+    					// ...
+    					Navigator.pop(context);
+    				},
+    			),
+    			ListTile(
+    				title: Text('Payment'),
+    				onTap: () {
+    					// Update the state of the app.
+    					// ...
+    					Navigator.pop(context);
+    				},
+    			),
+    			ListTile(
+    				title: Text('Previous Order'),
+    				onTap: () {
+    					// Update the state of the app.
+    					// ...
+    					Navigator.pop(context);
+    				},
+    			),
+    		],
+    	),
+    );
+  }
+}
+
+class HelpWidget extends StatelessWidget {
+  const HelpWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+    	decoration: new BoxDecoration(
+          borderRadius: new BorderRadius.only(
+    			topLeft:  const  Radius.circular(20.0),
+    			topRight: const  Radius.circular(20.0),
+    		)
+      ),
+			color: Colors.white,
+    	child: new Align(
+    		alignment: Alignment.topCenter,
+    		child: SafeArea(
+    			minimum: const EdgeInsets.all(16.0),
+    			child: TextField(
+    				decoration: InputDecoration(
+    					border: OutlineInputBorder(),
+    					labelText: 'Need help?'
+    				)
+    			)
+    		)
+    	)
+    );
+  }
+}
+
 
 class MapWidget extends StatelessWidget {
   const MapWidget({
@@ -113,9 +163,24 @@ class MapWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-    	color: Colors.grey[400],
-    );
+    return Scaffold( 
+			body: Builder(
+				builder: (context) => 
+					Align(
+						alignment: Alignment.bottomRight,
+						child: FloatingActionButton(
+							onPressed: () {
+								showBottomSheet(
+									context: context,
+									builder: (context) => Container(
+										color: Colors.red,
+									)
+								);
+							},
+						),
+					),
+			)
+		);
   }
 }
 
@@ -134,12 +199,12 @@ class MenuButton extends StatelessWidget {
     				minimum: const EdgeInsets.all(16.0),
     				child: ClipOval(
     					child: Material(
-    						color: Colors.grey[800], // button color
+    						color: Colors.white, // button color
     						child: InkWell(
     							child: SizedBox(
     								width: 42,
     								height: 42,
-    								child: Icon(Icons.menu, color: Colors.white)),
+    								child: Icon(Icons.menu, color: Colors.black)),
     							onTap: () {
     								Scaffold.of(context).openDrawer();
     							},
