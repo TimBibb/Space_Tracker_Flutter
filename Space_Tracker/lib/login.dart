@@ -174,8 +174,8 @@ class _LoginScreenState extends State<LoginScreen> {
             setState(() {
               _futureLogin =
                   loginRequest(emailController.text, passwordController.text);
-              LoginLogic(futureLogin: _futureLogin);
             });
+            LoginLogic(futureLogin: _futureLogin);
           },
           padding: EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(
