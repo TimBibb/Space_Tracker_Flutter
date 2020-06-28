@@ -103,51 +103,54 @@ class HelpSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 600.0,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: const Radius.circular(20.0),
-              topRight: const Radius.circular(20.0),
-            )),
-        child: SafeArea(
-            minimum: const EdgeInsets.only(top: 0, left: 36, right: 36),
-            child: ListView(
-              physics: const NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      width: 40,
-                      height: 5,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(12.0))),
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Container(
+          height: 600.0,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: const Radius.circular(20.0),
+                topRight: const Radius.circular(20.0),
+              )),
+          child: SafeArea(
+              minimum: const EdgeInsets.only(top: 0, left: 36, right: 36),
+              child: ListView(
+                physics: const NeverScrollableScrollPhysics(),
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        width: 40,
+                        height: 5,
+                        decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0))),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 18),
+                  HelpSearchBar(),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 10.0,
                     ),
-                  ],
-                ),
-                SizedBox(height: 18),
-                HelpSearchBar(),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 10.0,
+                    child: Text(
+                      "Quick Select",
+                    ),
                   ),
-                  child: Text(
-                    "Quick Select",
+                  Divider(
+                    color: Colors.grey,
+                    height: 10,
+                    indent: 5.0,
                   ),
-                ),
-                Divider(
-                  color: Colors.grey,
-                  height: 10,
-                  indent: 5.0,
-                ),
-                QuickHelpGrid()
-              ],
-              shrinkWrap: true,
-            )));
+                  QuickHelpGrid()
+                ],
+                shrinkWrap: true,
+              ))),
+    );
   }
 }
 
