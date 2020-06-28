@@ -200,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
             future: _futureLogin,
             // ignore: missing_return
             builder: (context, snapshot) {
-              if (snapshot != null) {
+              if (snapshot.hasData) {
                 if (snapshot.data.success) {
                   Navigator.of(context).pushNamed('/home');
                 } else if (snapshot.hasError) {
