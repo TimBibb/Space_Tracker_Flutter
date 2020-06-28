@@ -112,7 +112,7 @@ class HelpSheet extends StatelessWidget {
               topRight: const Radius.circular(20.0),
             )),
         child: SafeArea(
-            minimum: const EdgeInsets.only(left: 36, right: 36),
+            minimum: const EdgeInsets.only(top: 0, left: 36, right: 36),
             child: ListView(
               physics: const NeverScrollableScrollPhysics(),
               children: <Widget>[
@@ -120,10 +120,10 @@ class HelpSheet extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      width: 30,
+                      width: 40,
                       height: 5,
                       decoration: BoxDecoration(
-                          color: Colors.grey[300],
+                          color: Colors.grey,
                           borderRadius:
                               BorderRadius.all(Radius.circular(12.0))),
                     ),
