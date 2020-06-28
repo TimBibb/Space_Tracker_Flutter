@@ -59,8 +59,8 @@ class _HomePageState extends State<MyHomePage> {
 					MapWidget(),
 					MenuButton(),
 					DraggableScrollableSheet(
-						initialChildSize: 0.30,
-            minChildSize: 0.15,
+						initialChildSize: 0.35,
+            minChildSize: 0.2,
             builder: (BuildContext context, ScrollController scrollController) {
               return SingleChildScrollView(
                 controller: scrollController,
@@ -84,7 +84,7 @@ class HelpSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-			height: 300.0,
+			//height: 300.0,
     	decoration: BoxDecoration(
 				color: Colors.white,
         borderRadius: BorderRadius.only(
