@@ -48,6 +48,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<MyHomePage> {
+	final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
 	@override
 	Widget build(BuildContext context) {
@@ -85,12 +86,20 @@ class _HomePageState extends State<MyHomePage> {
 					],
 				),
 			),
-			body: FlatButton(
-				onPressed: (){
-					Scaffold.of(context).openDrawer();
-				},
-				child: Icon(Icons.menu),
-			)
+			body: Align(
+				alignment: Alignment.topLeft,
+				child: SafeArea(
+					minimum: const EdgeInsets.all(16.0),
+					child: FlatButton(
+						color: Colors.grey,
+						textColor: Colors.white,
+						onPressed: (){
+							_scaffoldKey.currentState.openDrawer();
+						},
+						child: Icon(Icons.menu),
+					)
+				)
+			) 
 		);
 	}
 }
