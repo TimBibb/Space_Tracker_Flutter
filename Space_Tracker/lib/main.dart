@@ -58,17 +58,20 @@ class _HomePageState extends State<MyHomePage> {
 				children: <Widget>[
 					MapWidget(),
 					MenuButton(),
-					DraggableScrollableSheet(
-						initialChildSize: 0.35,
-            minChildSize: 0.2,
-						maxChildSize: .35,
-						expand: false,
-            builder: (BuildContext context, ScrollController scrollController) {
-              return SingleChildScrollView(
-                controller: scrollController,
-                child: HelpSheet(),
-              );
-            },
+					Align(
+						alignment: Alignment.bottomCenter,
+						child: DraggableScrollableSheet(
+							initialChildSize: 0.35,
+							minChildSize: 0.2,
+							maxChildSize: .35,
+							expand: false,
+							builder: (BuildContext context, ScrollController scrollController) {
+								return SingleChildScrollView(
+									controller: scrollController,
+									child: HelpSheet(),
+								);
+							},
+						)
 					)
 				]
 			),
