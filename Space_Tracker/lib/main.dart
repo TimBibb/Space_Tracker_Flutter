@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 void main() {
 	runApp(MyApp());
@@ -58,20 +59,16 @@ class _HomePageState extends State<MyHomePage> {
 				children: <Widget>[
 					MapWidget(),
 					MenuButton(),
-					Align(
-						alignment: Alignment.bottomCenter,
-						child: DraggableScrollableSheet(
-							initialChildSize: 0.35,
-							minChildSize: 0.2,
-							maxChildSize: .35,
-							expand: false,
-							builder: (BuildContext context, ScrollController scrollController) {
-								return SingleChildScrollView(
-									controller: scrollController,
-									child: HelpSheet(),
-								);
-							},
-						)
+					SlidingUpPanel(
+						maxHeight: 600,
+            minHeight: 200.0,
+						parallaxEnabled: true,
+						parallaxOffset: .1,
+						panel: HelpSheet(),
+						borderRadius: BorderRadius.only(
+							topLeft: Radius.circular(18.0),
+							topRight: Radius.circular(18.0)
+						),
 					)
 				]
 			),
