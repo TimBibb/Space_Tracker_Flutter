@@ -43,11 +43,12 @@ class MyHomePage extends StatefulWidget {
 	// used by the build method of the State. Fields in a Widget subclass are
 	// always marked "final".
 	@override 
-	_HomePageState createState() => _HomePageState();
+	_HomePageState createState() => _HomePageState("Tim Bibbee");
 	final String title;
 }
 
 class _HomePageState extends State<MyHomePage> {
+  _HomePageState(this._username);
 	@override
 	Widget build(BuildContext context) {
 		return new Scaffold(
@@ -60,13 +61,13 @@ class _HomePageState extends State<MyHomePage> {
 					padding: EdgeInsets.zero,
 					children: <Widget>[
 						DrawerHeader(
-							child: Text('Drawer Header'),
+							child: Align(alignment: Alignment.bottomLeft, child: Text(_username)),
 							decoration: BoxDecoration(
-								color: Colors.blue,
+								color: Colors.grey,
 							),
 						),
 						ListTile(
-							title: Text('Item 1'),
+							title: Text('Account'),
 							onTap: () {
 								// Update the state of the app.
 								// ...
@@ -74,7 +75,15 @@ class _HomePageState extends State<MyHomePage> {
 							},
 						),
 						ListTile(
-							title: Text('Item 2'),
+							title: Text('Payment'),
+							onTap: () {
+								// Update the state of the app.
+								// ...
+								Navigator.pop(context);
+							},
+						),
+						ListTile(
+							title: Text('Previous Order'),
 							onTap: () {
 								// Update the state of the app.
 								// ...
@@ -87,6 +96,8 @@ class _HomePageState extends State<MyHomePage> {
 			body: MenuButton()
 		);
 	}
+
+	final String _username;
 }
 
 class MenuButton extends StatelessWidget {
