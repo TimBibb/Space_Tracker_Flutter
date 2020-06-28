@@ -90,7 +90,7 @@ class HelpSheet extends StatelessWidget {
 						HelpSearchBar(),
 						Padding(
 							padding: const EdgeInsets.only(
-								top: 4.0,
+								top: 10.0,
 							),
 							child: Text(
 									"Quick Select",
