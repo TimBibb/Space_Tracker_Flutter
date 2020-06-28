@@ -64,7 +64,6 @@ class _HomePageState extends State<MyHomePage> {
             minHeight: 150.0,
 						parallaxEnabled: true,
 						parallaxOffset: .1,
-						snapPoint: 0.5,
 						panel: HelpSheet(),
 						borderRadius: BorderRadius.only(
 							topLeft: Radius.circular(18.0),
