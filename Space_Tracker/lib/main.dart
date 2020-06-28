@@ -133,12 +133,12 @@ class HelpWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Container(
     	decoration: new BoxDecoration(
-          borderRadius: new BorderRadius.only(
+				color: Colors.white,
+        borderRadius: new BorderRadius.only(
     			topLeft:  const  Radius.circular(20.0),
     			topRight: const  Radius.circular(20.0),
     		)
       ),
-			color: Colors.white,
     	child: new Align(
     		alignment: Alignment.topCenter,
     		child: SafeArea(
