@@ -204,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   if (snapshot.hasData) {
                     Navigator.of(context).pushNamed("/home");
                   } else if (snapshot.hasError) {
-                    return Text("${snapshot.error}");
+                    return Text("peen");
                   }
 
                   return CircularProgressIndicator();
