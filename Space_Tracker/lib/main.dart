@@ -53,6 +53,12 @@ class MyHomePage extends StatefulWidget {
 class _HomePageState extends State<MyHomePage> {
   _HomePageState(this._username);
   double _cornerRadius = 18.0;
+  double maxHeightHelpBar, minHeightHelpBar;
+  @override
+  void setState(fn) {
+    maxHeightHelpBar = MediaQuery.of(context).size.height / 3;
+    minHeightHelpBar = MediaQuery.of(context).size.height / 5;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +68,9 @@ class _HomePageState extends State<MyHomePage> {
         MapWidget(),
         MenuButton(),
         SlidingUpPanel(
-          maxHeight: 350.0,
-          minHeight: 150.0,
-          panel: HelpSheet(),
+          maxHeight: maxHeightHelpBar,
+          minHeight: minHeightHelpBar,
+          panel: HelpSheet(maxHeightHelpBar),
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(_cornerRadius),
               topRight: Radius.circular(_cornerRadius)),
@@ -97,60 +103,60 @@ class _HomePageState extends State<MyHomePage> {
 }
 
 class HelpSheet extends StatelessWidget {
-  const HelpSheet({
+  const HelpSheet(
+    this._maxHeight, {
     Key key,
   }) : super(key: key);
 
+  final double _maxHeight;
+
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: Container(
-          height: 600.0,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: const Radius.circular(20.0),
-                topRight: const Radius.circular(20.0),
-              )),
-          child: SafeArea(
-              minimum: const EdgeInsets.only(top: 0, left: 36, right: 36),
-              child: ListView(
-                physics: const NeverScrollableScrollPhysics(),
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        width: 40,
-                        height: 5,
-                        decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(12.0))),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 18),
-                  HelpSearchBar(),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 10.0,
+    return Container(
+        height: _maxHeight,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: const Radius.circular(20.0),
+              topRight: const Radius.circular(20.0),
+            )),
+        child: SafeArea(
+            minimum: const EdgeInsets.only(top: 0, left: 36, right: 36),
+            child: ListView(
+              physics: const NeverScrollableScrollPhysics(),
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      width: 40,
+                      height: 5,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(12.0))),
                     ),
-                    child: Text(
-                      "Quick Select",
-                    ),
+                  ],
+                ),
+                SizedBox(height: 18),
+                HelpSearchBar(),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 10.0,
                   ),
-                  Divider(
-                    color: Colors.grey,
-                    height: 10,
-                    indent: 5.0,
+                  child: Text(
+                    "Quick Select",
                   ),
-                  QuickHelpGrid()
-                ],
-                shrinkWrap: true,
-              ))),
-    );
+                ),
+                Divider(
+                  color: Colors.grey,
+                  height: 10,
+                  indent: 5.0,
+                ),
+                QuickHelpGrid()
+              ],
+              shrinkWrap: true,
+            )));
   }
 }
 
