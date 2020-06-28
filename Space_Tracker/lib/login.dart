@@ -217,7 +217,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 return Column(
                   children: <Widget>[Text(loginError), loginButton()],
                 );
-                ;
               }
             }));
   }
