@@ -64,6 +64,7 @@ class _HomePageState extends State<MyHomePage> {
             minHeight: 150.0,
 						parallaxEnabled: true,
 						parallaxOffset: .1,
+						snapPoint: 0.5,
 						panel: HelpSheet(),
 						borderRadius: BorderRadius.only(
 							topLeft: Radius.circular(18.0),
@@ -110,6 +111,7 @@ class HelpSheet extends StatelessWidget {
     	child: SafeArea(
     		minimum: const EdgeInsets.all(32),
     		child: ListView(
+					physics: const NeverScrollableScrollPhysics(),
 					children: <Widget> [
 						HelpSearchBar(),
 						Padding(
@@ -138,6 +140,7 @@ class QuickHelpGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+			physics: const NeverScrollableScrollPhysics(),
 			primary: true,
 			padding: EdgeInsets.only(top: 5.0),
     	crossAxisCount: 3,
