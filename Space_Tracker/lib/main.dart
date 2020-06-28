@@ -48,64 +48,43 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<MyHomePage> {
-	final List<Tab> myTabs = <Tab>[
-		Tab(text: 'Satellites'),
-		Tab(text: 'Launches'),
-  	];
-	  
+
 	@override
 	Widget build(BuildContext context) {
-		return DefaultTabController(
-		length: myTabs.length,
-		child: Scaffold(
-			appBar: AppBar(
-			bottom: TabBar(
-				tabs: myTabs,
-			),
-			),
-			body: TabBarView(
-			children: myTabs.map((Tab tab) {
-				final String label = tab.text.toLowerCase();
-				if (label == "satellites"){
-					new Scaffold(
-						body: Center(
-							// Center is a layout widget. It takes a single child and positions it
-							// in the middle of the parent.
-							child: GridView.count(
-									primary: true,
-									padding: const EdgeInsets.all(20),
-									crossAxisSpacing: 10,
-									mainAxisSpacing: 10,
-									crossAxisCount: 2,
-									
-									children: List.generate(50, (index){
-										return new FlatButton(
-											onPressed: (){},
-											padding: const EdgeInsets.all(8),
-											color: Colors.blue,
-											child: new Center(
-												child: const Text(
-													'ISS',
-													textAlign: TextAlign.center,
-													style: TextStyle(
-															fontSize: 24,
-															fontWeight: FontWeight.bold,
-															color: Colors.white
-													),
-												),
-											),
-										);
-									},
-								)
+		return new Scaffold(
+			drawer: Drawer(
+				// Add a ListView to the drawer. This ensures the user can scroll
+				// through the options in the drawer if there isn't enough vertical
+				// space to fit everything.
+				child: ListView(
+					// Important: Remove any padding from the ListView.
+					padding: EdgeInsets.zero,
+					children: <Widget>[
+						DrawerHeader(
+							child: Text('Drawer Header'),
+							decoration: BoxDecoration(
+								color: Colors.blue,
 							),
 						),
-					);
-				}else if (label == "launches"){
-
-				}
-			}).toList(),
-			),
-		),
+						ListTile(
+							title: Text('Item 1'),
+							onTap: () {
+								// Update the state of the app.
+								// ...
+								Navigator.pop(context);
+							},
+						),
+						ListTile(
+							title: Text('Item 2'),
+							onTap: () {
+								// Update the state of the app.
+								// ...
+								Navigator.pop(context);
+							},
+						),
+					],
+				),
+			)
 		);
 	}
 }
