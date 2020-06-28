@@ -1,6 +1,24 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Space_Tracker/login_ui_constants.dart';
+import 'package:http/http.dart' as http;
+
+class LoginCredentials {
+  final String email;
+  final String password;
+
+  LoginCredentials({this.email, this.password});
+
+  factory LoginCredentials.fromJson(Map<String, dynamic> json) {
+    return LoginCredentials(
+      email: json['email'],
+      password: json['password'],
+    );
+  }
+}
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -9,6 +27,13 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _rememberMe = false;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  Future<http.Response> postLogin(String email, String password) {
+    return http.post('http://10.0.0.166/Authentication/Login',
+        body: {'email': email, 'password': password});
+  }
 
   Widget _buildEmailTF() {
     return Column(
@@ -24,6 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
+            controller: emailController,
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.white,
@@ -59,6 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
+            controller: passwordController,
             obscureText: true,
             style: TextStyle(
               color: Colors.white,
@@ -127,7 +154,8 @@ class _LoginScreenState extends State<LoginScreen> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () => print('Login Button Pressed'),
+        onPressed: () =>
+            postLogin(emailController.text, passwordController.text),
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
