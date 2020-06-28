@@ -85,7 +85,7 @@ class HelpSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-			//height: 300.0,
+			//height: 600.0,
     	decoration: BoxDecoration(
 				color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -109,7 +109,7 @@ class HelpSheet extends StatelessWidget {
 						Divider(color: Colors.grey, height: 10, indent: 5.0,),
 						QuickHelpGrid()
 					],
-					//shrinkWrap: true,
+					shrinkWrap: true,
 				)
     	)
     );
