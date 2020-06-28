@@ -84,29 +84,40 @@ class _HomePageState extends State<MyHomePage> {
 					],
 				),
 			),
-			body: Builder(
-				builder: (context) =>
-					Align(
-						alignment: Alignment.topLeft,
-						child: SafeArea(
-							minimum: const EdgeInsets.all(16.0),
-							child: ClipOval(
-								child: Material(
-									color: Colors.grey, // button color
-									child: InkWell(
-										child: SizedBox(
-											width: 56,
-											height: 56,
-											child: Icon(Icons.menu, color: Colors.white)),
-										onTap: () {
-											Scaffold.of(context).openDrawer();
-										},
-									),
-								),
-							)
-						)
-					) 
-			)
+			body: MenuButton()
 		);
 	}
+}
+
+class MenuButton extends StatelessWidget {
+  const MenuButton({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Builder(
+    	builder: (context) =>
+    		Align(
+    			alignment: Alignment.topLeft,
+    			child: SafeArea(
+    				minimum: const EdgeInsets.all(16.0),
+    				child: ClipOval(
+    					child: Material(
+    						color: Colors.grey[800], // button color
+    						child: InkWell(
+    							child: SizedBox(
+    								width: 42,
+    								height: 42,
+    								child: Icon(Icons.menu, color: Colors.white)),
+    							onTap: () {
+    								Scaffold.of(context).openDrawer();
+    							},
+    						),
+    					),
+    				)
+    			)
+    		) 
+    );
+  }
 }
