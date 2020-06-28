@@ -138,6 +138,7 @@ class QuickHelpGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+			primary: true,
 			padding: EdgeInsets.only(top: 5.0),
     	crossAxisCount: 3,
 			shrinkWrap: true,
