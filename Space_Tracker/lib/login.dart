@@ -200,24 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   if (snapshot.hasData) {
                     Navigator.of(context).pushNamedAndRemoveUntil(
                         '/home', (Route<dynamic> route) => false);
-                  } else if (snapshot.hasError) {
-                    showCupertinoDialog(
-                        context: context,
-                        builder: (_) => CupertinoAlertDialog(
-                                title: new Text("Incorrect login"),
-                                content: new Text(
-                                    "Your email or password was incorrect."),
-                                actions: <Widget>[
-                                  // usually buttons at the bottom of the dialog
-                                  new FlatButton(
-                                    child: new Text("OK"),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                      _futureLogin = null;
-                                    },
-                                  ),
-                                ]));
-                  }
+                  } else if (snapshot.hasError) {}
 
                   return CircularProgressIndicator();
                 }));
