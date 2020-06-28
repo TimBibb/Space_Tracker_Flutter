@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  bool loginError = false;
+  String loginError = "";
 
   Future<LoginResponse> _futureLogin;
 
@@ -175,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() {
           _futureLogin =
               loginRequest(emailController.text, passwordController.text);
-          loginError = false;
+          loginError = "";
         });
       },
       padding: EdgeInsets.all(15.0),
@@ -210,15 +210,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       '/home', (Route<dynamic> route) => false);
                 } else {
                   setState(() {
-                    loginError = true;
+                    loginError = snapshot.data.error;
                   });
                 }
               } else {
                 return Column(
-                  children: <Widget>[
-                    (loginError) ? Text("${snapshot.data.error}") : Container(),
-                    loginButton()
-                  ],
+                  children: <Widget>[Text(loginError), loginButton()],
                 );
                 ;
               }
