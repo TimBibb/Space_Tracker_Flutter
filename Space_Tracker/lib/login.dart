@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Space_Tracker/login_ui_constants.dart';
@@ -200,26 +201,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.of(context).pushNamedAndRemoveUntil(
                         '/home', (Route<dynamic> route) => false);
                   } else if (snapshot.hasError) {
-                    showDialog(
+                    showCupertinoDialog(
                         context: context,
-                        builder: (BuildContext context) {
-                          // return object of type Dialog
-                          return AlertDialog(
-                            title: new Text("Incorrect login"),
-                            content: new Text(
-                                "Your email or password was incorrect."),
-                            actions: <Widget>[
-                              // usually buttons at the bottom of the dialog
-                              new FlatButton(
-                                child: new Text("OK"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                  _futureLogin = null;
-                                },
-                              ),
-                            ],
-                          );
-                        });
+                        builder: (_) => CupertinoAlertDialog(
+                                title: new Text("Incorrect login"),
+                                content: new Text(
+                                    "Your email or password was incorrect."),
+                                actions: <Widget>[
+                                  // usually buttons at the bottom of the dialog
+                                  new FlatButton(
+                                    child: new Text("OK"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                      _futureLogin = null;
+                                    },
+                                  ),
+                                ]));
                   }
 
                   return CircularProgressIndicator();
