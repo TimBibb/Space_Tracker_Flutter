@@ -60,8 +60,8 @@ class _HomePageState extends State<MyHomePage> {
 					MapWidget(),
 					MenuButton(),
 					SlidingUpPanel(
-						maxHeight: 600,
-            minHeight: 200.0,
+						maxHeight: 350.0,
+            minHeight: 150.0,
 						parallaxEnabled: true,
 						parallaxOffset: .1,
 						panel: HelpSheet(),
