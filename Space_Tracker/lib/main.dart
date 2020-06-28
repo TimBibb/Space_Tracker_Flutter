@@ -90,14 +90,13 @@ class HelpSheet extends StatelessWidget {
 						HelpSearchBar(),
 						Padding(
 							padding: const EdgeInsets.only(
-								top: 2.0,
+								top: 4.0,
 							),
 							child: Text(
-									"text",
-									style: TextStyle(fontSize: 20.0),
+									"Quick Select",
 								),
 						),
-						Divider(color: Colors.grey, height: 10),
+						Divider(color: Colors.grey, height: 10, indent: 5.0,),
 						QuickHelpGrid()
 					],
 					shrinkWrap: true,
@@ -115,6 +114,7 @@ class QuickHelpGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+			padding: EdgeInsets.only(top: 5.0),
     	crossAxisCount: 3,
 			shrinkWrap: true,
 			mainAxisSpacing: 4.0,
