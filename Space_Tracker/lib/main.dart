@@ -64,11 +64,6 @@ class _HomePageState extends State<MyHomePage> {
         SlidingUpPanel(
           maxHeight: 350.0,
           minHeight: 150.0,
-          parallaxEnabled: true,
-          parallaxOffset: .1,
-          header: Expanded(
-              child: Align(
-                  alignment: Alignment.center, child: Icon(Icons.maximize))),
           panel: HelpSheet(),
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(_cornerRadius),
@@ -121,6 +116,19 @@ class HelpSheet extends StatelessWidget {
             child: ListView(
               physics: const NeverScrollableScrollPhysics(),
               children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      width: 30,
+                      height: 5,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(12.0))),
+                    ),
+                  ],
+                ),
                 HelpSearchBar(),
                 Padding(
                   padding: const EdgeInsets.only(
