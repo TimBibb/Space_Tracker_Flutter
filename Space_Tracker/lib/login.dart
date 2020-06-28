@@ -8,9 +8,9 @@ import 'package:http/http.dart' as http;
 
 class LoginResponse {
   final String name;
-  final String isAgent;
+  final bool isAgent;
   final String token;
-  final String success;
+  final bool success;
   final String error;
 
   LoginResponse(
@@ -49,11 +49,6 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
       throw Exception('Wrong Email and/or Password');
     }
-  }
-
-  Future<http.Response> postLogin(String email, String password) {
-    return http.post('http://10.0.0.166/Authentication/Login',
-        body: {'email': email, 'password': password});
   }
 
   Widget _buildEmailTF() {
