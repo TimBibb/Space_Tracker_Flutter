@@ -6,16 +6,23 @@ import 'package:flutter/services.dart';
 import 'package:Space_Tracker/login_ui_constants.dart';
 import 'package:http/http.dart' as http;
 
-class LoginCredentials {
-  final String email;
-  final String password;
+class LoginResponse {
+  final String name;
+  final String isAgent;
+  final String token;
+  final String success;
+  final String error;
 
-  LoginCredentials({this.email, this.password});
+  LoginResponse(
+      {this.name, this.isAgent, this.token, this.success, this.error});
 
-  factory LoginCredentials.fromJson(Map<String, dynamic> json) {
-    return LoginCredentials(
-      email: json['email'],
-      password: json['password'],
+  factory LoginResponse.fromJson(Map<String, dynamic> json) {
+    return LoginResponse(
+      name: json['Name'],
+      isAgent: json['IsAgent'],
+      token: json['Token'],
+      success: json['Success'],
+      error: json['Error'],
     );
   }
 }
@@ -29,6 +36,20 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _rememberMe = false;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  Future<LoginResponse> _futureLogin;
+
+  Future<LoginResponse> loginRequest(String email, String password) async {
+    final http.Response response = await http.post(
+        'http://10.0.0.166/Authentication/Login',
+        body: {'email': email, 'password': password});
+
+    if (response.statusCode == 200) {
+      return LoginResponse.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to create album.');
+    }
+  }
 
   Future<http.Response> postLogin(String email, String password) {
     return http.post('http://10.0.0.166/Authentication/Login',
@@ -150,29 +171,45 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildLoginBtn() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
-      width: double.infinity,
-      child: RaisedButton(
-        elevation: 5.0,
-        onPressed: () =>
-            postLogin(emailController.text, passwordController.text),
-        padding: EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        color: Colors.white,
-        child: Text(
-          'LOGIN',
-          style: TextStyle(
-            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
-          ),
-        ),
-      ),
-    );
+        padding: EdgeInsets.symmetric(vertical: 25.0),
+        width: double.infinity,
+        child: (_futureLogin == null)
+            ? RaisedButton(
+                elevation: 5.0,
+                onPressed: () {
+                  setState(() {
+                    _futureLogin = loginRequest(
+                        emailController.text, passwordController.text);
+                  });
+                },
+                padding: EdgeInsets.all(15.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                color: Colors.white,
+                child: Text(
+                  'LOGIN',
+                  style: TextStyle(
+                    color: Color(0xFF527DAA),
+                    letterSpacing: 1.5,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'OpenSans',
+                  ),
+                ),
+              )
+            : FutureBuilder<LoginResponse>(
+                future: _futureLogin,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text(snapshot.data.success);
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+
+                  return CircularProgressIndicator();
+                },
+              ));
   }
 
   Widget _buildSignInWithText() {
