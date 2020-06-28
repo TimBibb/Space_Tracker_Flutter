@@ -83,15 +83,18 @@ class HelpSheet extends StatelessWidget {
     			topRight: const Radius.circular(20.0),
     		)
       ),
-    	child: ListView(
-				children: <Widget> [
-					HelpSearchBar(),
-					Text("Quick Help"),
-					Divider(color: Colors.grey[300]),
-					QuickHelpGrid()
-				],
-				shrinkWrap: true,
-			)
+    	child: SafeArea(
+    		minimum: const EdgeInsets.all(16.0),
+    		child: ListView(
+					children: <Widget> [
+						HelpSearchBar(),
+						Text("Quick Help"),
+						Divider(color: Colors.grey[300], height: 10),
+						QuickHelpGrid()
+					],
+					shrinkWrap: true,
+				)
+    	)
     );
   }
 }
@@ -106,34 +109,34 @@ class QuickHelpGrid extends StatelessWidget {
     return GridView.count(
     	crossAxisCount: 3,
 			shrinkWrap: true,
+			mainAxisSpacing: 4.0,
+			crossAxisSpacing: 4.0,
     	children: <Widget> [
-    		Container (
-    			padding: const EdgeInsets.all(10),
-					color: Colors.blue,
-    			child: Align(
-    				alignment: Alignment.center,
-    				child: Text("Computer"),
-    			)
-    		),
-    		Container (
-    			padding: const EdgeInsets.all(10),
-					color: Colors.blue,
-    			child: Align(
-    				alignment: Alignment.center,
-    				child: Text("Phone"),
-    			)
-    		),
-    		Container (
-    			padding: const EdgeInsets.all(10),
-					color: Colors.blue,
-    			child: Align(
-    				alignment: Alignment.center,
-    				child: Text("Network"),
-    			)
-    		)
+    		QuickHelpItem("Computer"),
+				QuickHelpItem("Phone"),
+				QuickHelpItem("Network")
     	]
     );
   }
+}
+
+class QuickHelpItem extends StatelessWidget {
+  const QuickHelpItem(this.title, {
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container (
+    	padding: const EdgeInsets.all(10),
+			color: Colors.blue,
+    	child: Align(
+    		alignment: Alignment.center,
+    		child: Text(title, style: TextStyle(fontSize: 24, color: Colors.white)),
+			),
+    );
+  }
+	final String title;
 }
 
 class HelpSearchBar extends StatelessWidget {
@@ -169,7 +172,7 @@ class MapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold( 
-			backgroundColor: Colors.grey[300],
+			backgroundColor: Colors.blueGrey[300],
 			body: GridView.count(
         // Create a grid with 2 columns. If you change the scrollDirection to
         // horizontal, this produces 2 rows.
@@ -241,7 +244,7 @@ class SettingsDrawer extends StatelessWidget {
     		padding: EdgeInsets.zero,
     		children: <Widget>[
     			DrawerHeader(
-    				child: Align(alignment: Alignment.bottomLeft, child: Text(_username, style:  TextStyle(fontSize: 24))),
+    				child: Align(alignment: Alignment.bottomLeft, child: Text(_username, style: TextStyle(fontSize: 24))),
     				decoration: BoxDecoration(
     					color: Colors.grey,
     				),
