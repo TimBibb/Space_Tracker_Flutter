@@ -200,23 +200,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.of(context).pushNamed("/home");
                   } else if (snapshot.hasError) {
                     showDialog(
-                      context: context,
-                      builder: (context) => new AlertDialog(
-                        title: new Text('Incorrect login'),
-                        content: Text('Your email or password was incorrect.'),
-                        actions: <Widget>[
-                          new FlatButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                              setState(() {
-                                _futureLogin = null;
-                              });
-                            },
-                            child: new Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
+                        context: context,
+                        builder: (BuildContext context) {
+                          // return object of type Dialog
+                          return AlertDialog(
+                            title: new Text("Incorrect login"),
+                            content: new Text(
+                                "Your email or password was incorrect."),
+                            actions: <Widget>[
+                              // usually buttons at the bottom of the dialog
+                              new FlatButton(
+                                child: new Text("OK"),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  setState(() {
+                                    _futureLogin = null;
+                                  });
+                                },
+                              ),
+                            ],
+                          );
+                        });
                   }
 
                   return CircularProgressIndicator();
