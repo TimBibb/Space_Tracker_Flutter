@@ -104,32 +104,32 @@ class QuickHelpGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
     	crossAxisCount: 3,
-    	// children: <Widget> [
-    	// 	Container (
-    	// 		padding: const EdgeInsets.all(10),
-			// 		color: Colors.blue,
-    	// 		child: Align(
-    	// 			alignment: Alignment.center,
-    	// 			child: Text("Computer"),
-    	// 		)
-    	// 	),
-    	// 	Container (
-    	// 		padding: const EdgeInsets.all(10),
-			// 		color: Colors.blue,
-    	// 		child: Align(
-    	// 			alignment: Alignment.center,
-    	// 			child: Text("Phone"),
-    	// 		)
-    	// 	),
-    	// 	Container (
-    	// 		padding: const EdgeInsets.all(10),
-			// 		color: Colors.blue,
-    	// 		child: Align(
-    	// 			alignment: Alignment.center,
-    	// 			child: Text("Network"),
-    	// 		)
-    	// 	)
-    	// ]
+    	children: <Widget> [
+    		Container (
+    			padding: const EdgeInsets.all(10),
+					color: Colors.blue,
+    			child: Align(
+    				alignment: Alignment.center,
+    				child: Text("Computer"),
+    			)
+    		),
+    		Container (
+    			padding: const EdgeInsets.all(10),
+					color: Colors.blue,
+    			child: Align(
+    				alignment: Alignment.center,
+    				child: Text("Phone"),
+    			)
+    		),
+    		Container (
+    			padding: const EdgeInsets.all(10),
+					color: Colors.blue,
+    			child: Align(
+    				alignment: Alignment.center,
+    				child: Text("Network"),
+    			)
+    		)
+    	]
     );
   }
 }
@@ -167,7 +167,7 @@ class MapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold( 
-			backgroundColor: Colors.grey,
+			backgroundColor: Colors.grey[300],
 			body: GridView.count(
         // Create a grid with 2 columns. If you change the scrollDirection to
         // horizontal, this produces 2 rows.
