@@ -208,17 +208,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         actions: <Widget>[
                           new FlatButton(
                             onPressed: () {
-                              Navigator.of(context, rootNavigator: true)
-                                  .pop(); // dismisses only the dialog and returns nothing
+                              Navigator.of(context).pop();
+                              setState(() {
+                                _futureLogin = null;
+                              });
                             },
                             child: new Text('OK'),
                           ),
                         ],
                       ),
                     );
-                    setState(() {
-                      _futureLogin = null;
-                    });
                   }
 
                   return CircularProgressIndicator();
