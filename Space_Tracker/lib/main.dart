@@ -132,7 +132,7 @@ class HelpWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-			height: 800.0,
+			height: 300.0,
     	decoration: new BoxDecoration(
 				color: Colors.white,
         borderRadius: new BorderRadius.only(
