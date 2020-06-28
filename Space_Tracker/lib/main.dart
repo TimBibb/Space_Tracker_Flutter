@@ -109,7 +109,7 @@ class HelpSheet extends StatelessWidget {
 						Divider(color: Colors.grey, height: 10, indent: 5.0,),
 						QuickHelpGrid()
 					],
-					shrinkWrap: true,
+					//shrinkWrap: true,
 				)
     	)
     );
