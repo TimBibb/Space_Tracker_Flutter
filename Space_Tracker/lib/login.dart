@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (response.statusCode == 200) {
       return LoginResponse.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to create album.');
+      throw Exception('Wrong Email and/or Password');
     }
   }
 
@@ -202,7 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 future: _futureLogin,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    return Text(snapshot.data.success.toString());
+                    Navigator.of(context).pushNamed("/home");
                   } else if (snapshot.hasError) {
                     return Text("${snapshot.error}");
                   }
