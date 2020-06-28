@@ -197,10 +197,14 @@ class _LoginScreenState extends State<LoginScreen> {
             : FutureBuilder<LoginResponse>(
                 future: _futureLogin,
                 builder: (context, snapshot) {
-                  if (snapshot.hasData) {
+                  if (snapshot.data.success) {
                     Navigator.of(context).pushNamedAndRemoveUntil(
                         '/home', (Route<dynamic> route) => false);
-                  } else if (snapshot.hasError) {}
+                  } else {
+                    setState(() {
+                      _futureLogin = null;
+                    });
+                  }
 
                   return CircularProgressIndicator();
                 }));
