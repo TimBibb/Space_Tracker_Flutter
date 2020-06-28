@@ -175,7 +175,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   setState(() {
                     _futureLogin = loginRequest(
                         emailController.text, passwordController.text);
-                    LoginLogic(futureLogin: _futureLogin);
                   });
                 },
                 padding: EdgeInsets.all(15.0),
@@ -209,7 +208,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           new FlatButton(
                             onPressed: () {
                               Navigator.of(context).pop();
-                              _futureLogin = null;
+                              setState(() {
+                                _futureLogin = null;
+                              });
                             },
                             child: new Text('OK'),
                           ),
@@ -384,17 +385,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-}
-
-class LoginLogic extends StatelessWidget {
-  const LoginLogic({
-    Key key,
-    @required Future<LoginResponse> futureLogin,
-  })  : _futureLogin = futureLogin,
-        super(key: key);
-
-  final Future<LoginResponse> _futureLogin;
-
-  @override
-  Widget build(BuildContext context) {}
 }
