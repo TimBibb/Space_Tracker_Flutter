@@ -86,10 +86,11 @@ class HelpSheet extends StatelessWidget {
     	child: ListView(
 				children: <Widget> [
 					HelpSearchBar(),
-					//Text("Quick Help"),
-					//Divider(color: Colors.grey[300]),
+					Text("Quick Help"),
+					Divider(color: Colors.grey[300]),
 					QuickHelpGrid()
-				]
+				],
+				shrinkWrap: true,
 			)
     );
   }
