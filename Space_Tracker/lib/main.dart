@@ -67,6 +67,7 @@ class _HomePageState extends State<MyHomePage> {
           parallaxEnabled: true,
           parallaxOffset: .1,
           header: Container(
+              decoration: BoxDecoration(color: Colors.grey),
               child: Align(
                   alignment: Alignment.center, child: Icon(Icons.maximize))),
           panel: HelpSheet(),
