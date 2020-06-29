@@ -211,10 +211,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 } else {
                   loginError = snapshot.data.error;
                 }
-                return Column(
-                  children: <Widget>[Text('$loginError'), loginButton()],
-                );
               }
+              return Column(
+                children: <Widget>[Text('$loginError'), loginButton()],
+              );
             }));
   }
 
