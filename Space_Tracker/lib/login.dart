@@ -209,13 +209,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/home', (Route<dynamic> route) => false);
                 } else {
-                  setState(() {
-                    loginError = "snapshot.data.error";
-                  });
+                  loginError = "snapshot.data.error";
                 }
               } else {
                 return Column(
-                  children: <Widget>[Text('$loginError yes'), loginButton()],
+                  children: <Widget>[Text('$loginError'), loginButton()],
                 );
               }
             }));
