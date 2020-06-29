@@ -175,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() {
           _futureLogin =
               loginRequest(emailController.text, passwordController.text);
-          //loginError = "";
+          loginError = "";
         });
       },
       padding: EdgeInsets.all(15.0),
@@ -209,9 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/home', (Route<dynamic> route) => false);
                 } else {
-                  setState(() {
-                    loginError = "snapshot.data.error";
-                  });
+                  return Text(snapshot.data.error);
                 }
               } else {
                 return Column(
@@ -369,7 +367,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       _buildPasswordTF(),
                       _buildForgotPasswordBtn(),
                       _buildRememberMeCheckbox(),
-                      Text("$loginError"),
                       _buildLoginBtn(),
                       _buildSignInWithText(),
                       _buildSocialBtnRow(),
