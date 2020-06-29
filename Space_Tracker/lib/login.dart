@@ -210,7 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       '/home', (Route<dynamic> route) => false);
                 } else {
                   setState(() {
-                    loginError = snapshot.data.error;
+                    loginError = "snapshot.data.error";
                   });
                 }
               } else {
