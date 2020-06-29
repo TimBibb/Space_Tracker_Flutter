@@ -48,10 +48,6 @@ class _LoginScreenState extends State<LoginScreen> {
         'http://10.0.0.166/Authentication/Login',
         body: {'email': email, 'password': password});
 
-    if (response.statusCode != 200) {
-      throw Exception("Wrong Email and/or Password");
-    }
-
     return LoginResponse.fromJson(json.decode(response.body));
   }
 
