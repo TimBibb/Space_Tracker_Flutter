@@ -209,6 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/home', (Route<dynamic> route) => false);
                 } else {
+                  print(snapshot.data.error);
                   loginError = snapshot.data.error;
                 }
               }
