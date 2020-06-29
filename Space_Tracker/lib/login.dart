@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (response.statusCode == 200) {
       return LoginResponse.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Wrong Email and/or Password');
+      throw Exception("Wrong Email and/or Password");
     }
   }
 
@@ -213,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 }
               } else {
                 if (snapshot.hasError) {
-                  loginError = snapshot.error.toString();
+                  loginError = snapshot.data.error;
                 } else {
                   loginError = "";
                 }
