@@ -213,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 }
               } else {
                 if (snapshot.hasError) {
-                  loginError = snapshot.error;
+                  loginError = snapshot.error.toString();
                 } else {
                   loginError = "";
                 }
