@@ -215,7 +215,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 }
               } else {
                 return Column(
-                  children: <Widget>[Text("$loginError"), loginButton()],
+                  children: <Widget>[Text('$loginError'), loginButton()],
                 );
               }
             }));
