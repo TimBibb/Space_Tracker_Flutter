@@ -209,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/home', (Route<dynamic> route) => false);
                 } else {
-                  return Text("snapshot.data.error");
+                  print("Want to change this to ${snapshot.data.error}");
                 }
               } else {
                 return Column(
