@@ -200,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
             future: _futureLogin,
             // ignore: missing_return
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
+              if (snapshot.hasData != null && snapshot.hasData) {
                 if (snapshot.data.success) {
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/home', (Route<dynamic> route) => false);
