@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  String loginError = "";
+  String loginError = "nothing yet";
 
   Future<LoginResponse> _futureLogin;
 
