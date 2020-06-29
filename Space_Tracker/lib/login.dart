@@ -40,6 +40,8 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
+// TODO: Change to basic response flutter
+// go to website to do basic flutter get requests
 class _LoginScreenState extends State<LoginScreen> {
   bool _rememberMe = false;
   final emailController = TextEditingController();
