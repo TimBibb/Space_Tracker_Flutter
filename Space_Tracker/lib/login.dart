@@ -14,18 +14,24 @@ class LoginResponse {
   final String token;
   final bool success;
   final String error;
+  final String errors;
 
   LoginResponse(
-      {this.name, this.isAgent, this.token, this.success, this.error});
+      {this.name,
+      this.isAgent,
+      this.token,
+      this.success,
+      this.error,
+      this.errors});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
-      name: json['Name'],
-      isAgent: json['IsAgent'],
-      token: json['Token'],
-      success: json['Success'],
-      error: json['Error'],
-    );
+        name: json['Name'],
+        isAgent: json['IsAgent'],
+        token: json['Token'],
+        success: json['Success'],
+        error: json['Error'],
+        errors: json['errors']);
   }
 }
 
@@ -48,10 +54,10 @@ class _LoginScreenState extends State<LoginScreen> {
         'http://10.0.0.166/Authentication/Login',
         body: {'email': email, 'password': password});
 
-    if (response.statusCode == 200 || response.statusCode == 401) {
+    if (response.statusCode == 200 ||
+        response.statusCode == 401 ||
+        response.statusCode == 400) {
       return LoginResponse.fromJson(json.decode(response.body));
-    } else {
-      throw Exception("Wrong Email and/or Password");
     }
   }
 
