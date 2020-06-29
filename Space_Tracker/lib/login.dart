@@ -48,7 +48,11 @@ class _LoginScreenState extends State<LoginScreen> {
         'http://10.0.0.166/Authentication/Login',
         body: {'email': email, 'password': password});
 
-    return LoginResponse.fromJson(json.decode(response.body));
+    if (response.statusCode == 200 || response.statusCode == 401) {
+      return LoginResponse.fromJson(json.decode(response.body));
+    } else {
+      throw Exception("Wrong Email and/or Password");
+    }
   }
 
   Widget _buildEmailTF() {
@@ -200,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
             future: _futureLogin,
             // ignore: missing_return
             builder: (context, snapshot) {
-              if (snapshot.hasData != null && snapshot.hasData) {
+              if (snapshot.hasData) {
                 if (snapshot.data.success) {
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/home', (Route<dynamic> route) => false);
