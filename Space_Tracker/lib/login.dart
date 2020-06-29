@@ -211,8 +211,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 } else {
                   print("Want to change this to ${snapshot.data.error}");
                 }
-                print("done");
+                print(snapshot.data.toString());
               } else {
+                print(snapshot.error.toString());
                 return Column(
                   children: <Widget>[Text('$loginError'), loginButton()],
                 );
