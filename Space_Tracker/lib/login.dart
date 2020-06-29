@@ -175,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() {
           _futureLogin =
               loginRequest(emailController.text, passwordController.text);
-          loginError = "";
+          //loginError = "";
         });
       },
       padding: EdgeInsets.all(15.0),
