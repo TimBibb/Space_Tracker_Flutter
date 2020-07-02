@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Space_Tracker/login_ui_constants.dart';
 import 'package:http/http.dart' as http;
-import 'package:tuple/tuple.dart';
 
 class LoginResponse {
   final String name;
@@ -36,48 +35,6 @@ class LoginResponse {
   }
 }
 
-class Errors {
-  final List<String> email;
-
-  Errors({this.email});
-
-  factory Errors.fromJson(Map<String, dynamic> json) {
-    return Errors(email: json['Email']);
-  }
-}
-
-class FailedLoginResponse {
-  final String type;
-  final String title;
-  final String traceId;
-  final Errors errors;
-
-  FailedLoginResponse({this.type, this.title, this.traceId, this.errors});
-
-  factory FailedLoginResponse.fromJson(Map<String, dynamic> json) {
-    return FailedLoginResponse(
-      type: json['Name'],
-      title: json['IsAgent'],
-      traceId: json['Success'],
-      errors: Errors.fromJson(json['errors']),
-    );
-  }
-}
-
-_loginRequest(String email, String password) async {
-  String url = 'http://10.0.0.166/Authentication/Login';
-  http.Response response =
-      await http.post(url, body: {'email': email, 'password': password});
-
-  int statusCode = response.statusCode;
-
-  if (statusCode == 400) {
-    return FailedLoginResponse.fromJson(json.decode(response.body));
-  } else {
-    return LoginResponse.fromJson(json.decode(response.body));
-  }
-}
-
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -92,24 +49,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String loginError = "nothing yet";
 
-  Future<http.Response> _futureLogin;
-  LoginResponse success;
-  FailedLoginResponse failure;
+  Future<LoginResponse> _futureLogin;
 
-  Future<http.Response> loginRequest(String email, String password) async {
+  Future<LoginResponse> loginRequest(String email, String password) async {
     final http.Response response = await http.post(
         'http://10.0.0.166/Authentication/Login',
         body: {'email': email, 'password': password});
 
-    return response;
-  }
-
-  LoginResponse successLogin(http.Response response) {
-    return LoginResponse.fromJson(json.decode(response.body));
-  }
-
-  FailedLoginResponse failedLogin(http.Response response) {
-    return FailedLoginResponse.fromJson(json.decode(response.body));
+    if (response.statusCode == 200) {
+      return LoginResponse.fromJson(json.decode(response.body));
+    } else {
+      throw Exception("Wrong email and/or Password");
+    }
   }
 
   Widget _buildEmailTF() {
@@ -257,20 +208,16 @@ class _LoginScreenState extends State<LoginScreen> {
     return Container(
         padding: EdgeInsets.symmetric(vertical: 25.0),
         width: double.infinity,
-        child: FutureBuilder<http.Response>(
+        child: FutureBuilder<LoginResponse>(
             future: _futureLogin,
             // ignore: missing_return
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                if (snapshot.data.statusCode == 400) {
-                  failure = FailedLoginResponse.fromJson(
-                      snapshot.data.body as Map<String, dynamic>);
-                  loginError = failure.errors.email[0];
-                } else {
-                  success = LoginResponse.fromJson(
-                      snapshot.data.body as Map<String, dynamic>);
+                if (snapshot.data.success) {
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/home', (Route<dynamic> route) => false);
+                } else {
+                  loginError = snapshot.data.error;
                 }
               }
               return Column(
@@ -429,7 +376,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       _buildRememberMeCheckbox(),
                       _buildLoginBtn(),
                       _buildSignInWithText(),
-                      _buildSocialBtnRow(),
+                      //_buildSocialBtnRow(),
                       _buildSignupBtn(),
                     ],
                   ),
