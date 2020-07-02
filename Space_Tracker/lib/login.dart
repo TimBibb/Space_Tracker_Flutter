@@ -180,11 +180,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return RaisedButton(
       elevation: 5.0,
       onPressed: () {
-        setState(() {
-          _futureLogin =
-              loginRequest(emailController.text, passwordController.text);
-          loginError = "";
-        });
+        _futureLogin =
+            loginRequest(emailController.text, passwordController.text);
+        loginError = "";
+        //setState(() {});
       },
       padding: EdgeInsets.all(15.0),
       shape: RoundedRectangleBorder(
